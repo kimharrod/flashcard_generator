@@ -1,0 +1,23 @@
+{
+  "name": "flashcard_generator",
+  "version": "1.0.0",
+  "description": "flashcard app",
+  "main": "cards.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimharrod/flashcard_generator.git"
+  },
+  "keywords": [
+    "flashcards",
+    "cloze"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kimharrod/flashcard_generator/issues"
+  },
+  "homepage": "https://github.com/kimharrod/flashcard_generator#readme"
+}
