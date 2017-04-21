@@ -143,8 +143,21 @@ function showCard (name) {
 // function to store each card created
 function storeCard (card, type, top) {
 
+	// create a sequentially numbered card file for each card created
+	// containing the json object data for the card
+	fs.writeFile('card' + cardNum + '.json', JSON.stringify(card, null, 4), function (err) {
+		if (err) throw err;
+	});
 
-}
+	// create card index entry
+	var indexEntry = 'card' + cardNum + ',' + type + ',' + top + '\r\n';
+
+	// write the entry to the card index file, creating the file if it doesn't already exist
+	fs.appendFile('card-index.txt', indexEntry, function (err) {
+		if (err) throw err;
+	});
+
+} // end function storeCard
 
 // basic card constructor function
 // capitalize the name of the function because it is a constructor
