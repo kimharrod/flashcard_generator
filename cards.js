@@ -162,3 +162,18 @@ function BasicCard (frontText, backText) {
 } // end BasicCard constructor function
 
 
+// cloze card constructor function
+// capitalize the name of the function because it is a constructor
+function ClozeCard (fullText, clozeText) {
+
+	// conditional to make this constructor scope-safe
+	if(!(this instanceof ClozeCard)) {
+		return new ClozeCard(fullText, clozeText);
+	} // end scope-safe if statement
+
+	this.type = "cloze";
+	this.full = fullText;
+	this.cloze = clozeText;
+
+} // end ClozeCard constructor function
+
