@@ -1,1 +1,2 @@
-card1,cloze,George Washington lived in ..., Virginia.
+card1~cloze~George Washington was born in ..., Virginia
+card2~cloze~Alexander Hamilton was born on the Caribbean island of ...

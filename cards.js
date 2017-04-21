@@ -125,19 +125,79 @@ inquirer.prompt([
 } // end clozeMenu
 
 
-// // function to view a card
-// function viewMenu (cardName) {
+// function to view a card
+function viewMenu () {
 
-// 	fs.readFile("card-index.txt", "utf8", function(error,data) {
+	// loading two matched arrays - card fronts and corresponding file names
+	fs.readFile("card-index.txt", "utf8", function(error,data) {
+		if (!error) {
 
-// 	}
+			// split the file data into an array of lines of text
+			var indexLines = data.split("\r\n");
+			var cardFronts = [];
+			var cardNames = [];
 
-// }
+			// loop through the array to retrieve the card front info 
+			// and corresponding card file name for each index entry
+			for (var i=0; i < indexLines.length - 1; i++) {
 
-// // function to show the back side of a selected card
-// function showCard (name) {
+				 var linePieces = indexLines[i].split('~');
+				 
+				 // build an array of data to use for the view card prompt menu
+				 cardFronts.push(linePieces[2]);
+				 
+				 // keep track of the file name for each card front
+				 cardNames.push(linePieces[0]);
 
-// }
+			} // end for loop
+
+		} else {
+			 console.log("\nNo cards created yet");
+			 main();
+		}
+
+		// inquirer prompt for view card menu
+		inquirer.prompt([
+		  {
+			type: 'list',
+			name: 'cardChoice',
+			message: '\n\nPick a card to view',
+			choices: cardFronts
+		  }
+
+		  ]).then(function (answers) {
+
+		  	showCard(cardNames[cardFronts.indexOf(answers.cardChoice)]);
+
+		  }); // end inquirer callback
+	
+	}); // end readFile callback
+
+} // end viewMenu function
+
+
+// function to show the back side of a selected card
+function showCard (name) {
+
+	var cardFile = name + '.json';
+
+	fs.readFile(cardFile, 'utf8', function (err, data) {
+
+		if (err) throw err;
+
+		var cardObj;
+		// parse the JSON data to create a javascript object
+		cardObj = JSON.parse(data);
+
+		if (cardObj.type === "basic") {
+			console.log("Answer: " + cardObj.back);
+		} else {
+			console.log("Answer: " + cardObj.cloze);
+		} // end if
+
+	}); // end readFile callback		
+
+} // end function showCard
 
 
 // function to store each card created
@@ -150,7 +210,7 @@ function storeCard (card, type, top) {
 	});
 
 	// create card index entry
-	var indexEntry = 'card' + cardNum + ',' + type + ',' + top + '\r\n';
+	var indexEntry = 'card' + cardNum + '~' + type + '~' + top + '\r\n';
 
 	// write the entry to the card index file, creating the file if it doesn't already exist
 	fs.appendFile('card-index.txt', indexEntry, function (err) {
