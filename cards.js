@@ -190,10 +190,12 @@ function showCard (name) {
 		cardObj = JSON.parse(data);
 
 		if (cardObj.type === "basic") {
-			console.log("Answer: " + cardObj.back);
+			console.log("Answer: " + cardObj.back + "\n");
 		} else {
-			console.log("Answer: " + cardObj.cloze);
+			console.log("Answer: " + cardObj.cloze + "\n");
 		} // end if
+
+		main();
 
 	}); // end readFile callback		
 

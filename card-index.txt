@@ -1,2 +1,5 @@
 card1~cloze~George Washington was born in ..., Virginia
 card2~cloze~Alexander Hamilton was born on the Caribbean island of ...
+card3~basic~Who was the second president of the United States?
+card4~basic~Who shot and killed Alexander Hamilton in a duel?
+card5~cloze~Thomas Jefferson was the nation's first ... in 1790-1793 under President George Washington.
