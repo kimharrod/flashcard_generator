@@ -177,3 +177,24 @@ function ClozeCard (fullText, clozeText) {
 
 } // end ClozeCard constructor function
 
+
+// prototype to add method to cloze card object to derive partial text
+ClozeCard.prototype.partial = function() {
+
+	if (this.full.includes(this.cloze) === true) {
+		 var partialText = this.full.replace(this.cloze, "...");
+		 return partialText;
+
+	} else {
+
+		// display error message in terminal 
+		console.log("cloze mismatch error");
+		// error text gets written to index file
+		return "cloze mismatch error";
+
+	} // end if cloze not included in full
+
+}; // end ClozeCard.prototype.partial function
+
+main();
+
