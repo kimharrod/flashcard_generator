@@ -124,3 +124,41 @@ inquirer.prompt([
 
 } // end clozeMenu
 
+
+// function to view a card
+function viewMenu (cardName) {
+
+	fs.readFile("card-index.txt", "utf8", function(error,data) {
+
+	}
+
+}
+
+// function to show the back side of a selected card
+function showCard (name) {
+
+}
+
+
+// function to store each card created
+function storeCard (card, type, top) {
+
+
+}
+
+// basic card constructor function
+// capitalize the name of the function because it is a constructor
+function BasicCard (frontText, backText) {
+
+	// conditional to make this constructor scope-safe
+	if(!(this instanceof BasicCard)) {
+		return new BasicCard(frontText, backText);
+	} // end scope-safe if statement
+
+	this.type = "basic";
+	this.front = frontText;
+	this.back = backText;
+
+} // end BasicCard constructor function
+
+
