@@ -72,7 +72,8 @@ inquirer.prompt([
 
 } //end function main
 
-// prompt user for card creation data
+
+// function to prompt user for basic card creation data
 function basicMenu () {
 
 	inquirer.prompt([
@@ -85,15 +86,41 @@ function basicMenu () {
 		}
 	]).then(function(answers) {
 
-	// make a card object by passing the data to a BasicCard constructor
+	// make a basic card object by passing data to a BasicCard constructor
 	var basicCard = new BasicCard(answers.front, answers.back);
 	// call storeCard function to add an entry to the card index
-	// and store each card as a file
+	// and store the card as a file
 	storeCard(basicCard, basicCard.type, basicCard.front);
 	// start over to choose another activity
 	main();
 	
-	});
+	}); // end of inquirer callback
 
 } // end basicMenu
+
+
+// function to prompt user for cloze card creation data 
+function clozeMenu () {
+
+inquirer.prompt([
+	{
+		name: "full",
+		message: "Enter the full text for the card:"
+	}, {
+		name: "cloze",
+		message: "Enter the cloze-deletion text for the card:"
+	}
+]).then(function(answers) {
+
+	// make a cloze card object by passing data to a ClozeCard constructor
+	var clozeCard = new ClozeCard(answers.full, answers.cloze);
+	//call storeCard function to add an entry to the card index
+	// and store the card as a file
+	storeCard(clozeCard, clozeCard.type, clozeCard.partial());
+	//start over to choose another activity
+	main();
+
+}); // end of inquirer callback
+
+} // end clozeMenu
 
