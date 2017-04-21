@@ -12,7 +12,7 @@ var cardIndex = [];
 function main () {
 
 // opens and reads number of lines in index file to determine next card number
-fs.readfile("card-index.txt", "utf8", function(error, data) {
+fs.readFile("card-index.txt", "utf8", function(error, data) {
 
 		// first check to see if a card index file already exists
 		if (!error) {
@@ -125,19 +125,19 @@ inquirer.prompt([
 } // end clozeMenu
 
 
-// function to view a card
-function viewMenu (cardName) {
+// // function to view a card
+// function viewMenu (cardName) {
 
-	fs.readFile("card-index.txt", "utf8", function(error,data) {
+// 	fs.readFile("card-index.txt", "utf8", function(error,data) {
 
-	}
+// 	}
 
-}
+// }
 
-// function to show the back side of a selected card
-function showCard (name) {
+// // function to show the back side of a selected card
+// function showCard (name) {
 
-}
+// }
 
 
 // function to store each card created
