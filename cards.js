@@ -8,7 +8,7 @@ var fs = require("fs");
 var cardNum = 1;
 var cardIndex = [];
 
-// use inquirer to prompt user to choose the application activity path
+
 function main () {
 
 // opens and reads number of lines in index file to determine next card number
@@ -21,6 +21,7 @@ fs.readfile("card-index.txt", "utf8", function(error, data) {
 		} // end if card-index.txt file exists
 	}); // end readFile callback
 
+// use inquirer to prompt user to choose the application activity path
 inquirer.prompt([
 	{
 		type: 'list',
@@ -36,16 +37,18 @@ inquirer.prompt([
 			'Exit'
 		]
 	}
+
+// use switch statement to invoke a function depending on activity choice
 ]).then(function (answers) {
 
 	switch (answers.activity) {
 
-		case 'Create a Basic Card':
+		case 'Basic Card':
 			basicMenu();
 		break;
 
 
-		case 'Create a Cloze Card':
+		case 'Cloze Card':
 			clozeMenu();
 		break;
 
@@ -56,7 +59,7 @@ inquirer.prompt([
 
 
 		case 'Exit':
-			console.log("Exit selected");
+			console.log("Thanks! Please come again.");
 		break;
 
 
@@ -65,7 +68,32 @@ inquirer.prompt([
 
 	} //end switch
 
-  });
+  }); // end inquirer callback
 
 } //end function main
+
+// prompt user for card creation data
+function basicMenu () {
+
+	inquirer.prompt([
+		{
+			name: "front",
+			message: "Enter the text for the card front:"
+		}, {
+			name: "back",
+			message: "Enter the text for the card back:"
+		}
+	]).then(function(answers) {
+
+	// make a card object by passing the data to a BasicCard constructor
+	var basicCard = new BasicCard(answers.front, answers.back);
+	// call storeCard function to add an entry to the card index
+	// and store each card as a file
+	storeCard(basicCard, basicCard.type, basicCard.front);
+	// start over to choose another activity
+	main();
+	
+	});
+
+} // end basicMenu
 
